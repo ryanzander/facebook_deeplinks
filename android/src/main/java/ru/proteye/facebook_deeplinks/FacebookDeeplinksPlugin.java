@@ -96,6 +96,7 @@ public class FacebookDeeplinksPlugin implements FlutterPlugin, ActivityAware, Me
 
   private void initFacebookAppLink() {
     Intent intent = getIntent();
+    final Activity act = this.activityPluginBinding.getActivity();
     if (intent != null && intent.getAction() == Intent.ACTION_VIEW) {
       initialUrl = intent.getDataString();
       handleLink(initialUrl);
@@ -111,7 +112,9 @@ public class FacebookDeeplinksPlugin implements FlutterPlugin, ActivityAware, Me
             return;
           }
           initialUrl = appLinkData.getTargetUri().toString();
-          handleLink(initialUrl);
+          act.runOnUiThread(() -> { // need to run on main thread
+            handleLink(initialUrl);
+          });
         }
       }
     );
