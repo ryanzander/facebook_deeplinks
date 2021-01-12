@@ -1,3 +1,5 @@
+Forked from [rbcprolabs/facebook_deeplinks](https://github.com/rbcprolabs/facebook_deeplinks)
+
 # Facebook deeplinks
 
 A flutter plugin to get facebook deeplinks and transferring them to the flutter application.
