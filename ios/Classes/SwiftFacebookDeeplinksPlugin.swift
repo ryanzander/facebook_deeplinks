@@ -30,7 +30,11 @@ public class SwiftFacebookDeeplinksPlugin: NSObject, FlutterPlugin, FlutterStrea
       self.handleLink(url.absoluteString)
     }
 
-    Settings.isAutoInitEnabled = true
+    ApplicationDelegate.shared.application(
+      application,
+      didFinishLaunchingWithOptions: launchOptions
+    )
+
     ApplicationDelegate.initializeSDK(nil)
     AppLinkUtility.fetchDeferredAppLink { (url, error) in
       if let error = error {
@@ -49,6 +53,12 @@ public class SwiftFacebookDeeplinksPlugin: NSObject, FlutterPlugin, FlutterStrea
   }
 
   public func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+    ApplicationDelegate.shared.application(
+      app,
+      open: url,
+      sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
+      annotation: options[UIApplication.OpenURLOptionsKey.annotation]
+    )
     return self.handleLink(url.absoluteString)
   }
 
