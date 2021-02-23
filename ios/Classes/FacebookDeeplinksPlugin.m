@@ -65,7 +65,8 @@ static id _instance;
     [self handleLink:self.initialUrl];
 
     if (launchOptions[UIApplicationLaunchOptionsURLKey] == nil) {
-        [FBSDKSettings setAutoInitEnabled:YES];
+        [[FBSDKApplicationDelegate sharedInstance] application:application
+                           didFinishLaunchingWithOptions:launchOptions];
         [FBSDKApplicationDelegate initializeSDK:nil];
         [FBSDKAppLinkUtility fetchDeferredAppLink:^(NSURL *url, NSError *error) {
             if (error) {
@@ -85,6 +86,9 @@ static id _instance;
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url
             options:(NSDictionary<UIApplicationOpenURLOptionsKey, id> *)options {
+    [[FBSDKApplicationDelegate sharedInstance] application:application
+                                                 openURL:url
+                                                 options:options];
     return [self handleLink:[url absoluteString]];
 }
 
