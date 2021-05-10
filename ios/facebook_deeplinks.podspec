@@ -4,7 +4,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'facebook_deeplinks'
-  s.version          = '0.2.0'
+  s.version          = '0.3.0'
   s.summary          = 'A flutter plugin to get facebook deeplinks and transferring them to the flutter application.'
   s.description      = <<-DESC
 A flutter plugin to get facebook deeplinks and transferring them to the flutter application.
