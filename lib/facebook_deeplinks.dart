@@ -7,14 +7,14 @@ class FacebookDeeplinks {
     if (_singleton == null) {
       _singleton = FacebookDeeplinks._();
     }
-    return _singleton;
+    return _singleton!;
   }
 
   FacebookDeeplinks._();
 
-  static FacebookDeeplinks _singleton;
+  static FacebookDeeplinks? _singleton;
 
-  Stream<String> _onDeeplinkReceived;
+  Stream<String>? _onDeeplinkReceived;
 
   static const MethodChannel _methodChannel =
       const MethodChannel('ru.proteye/facebook_deeplinks/channel');
@@ -22,7 +22,7 @@ class FacebookDeeplinks {
       const EventChannel('ru.proteye/facebook_deeplinks/events');
 
   /// Gets the initial URL.
-  Future<String> getInitialUrl() async {
+  Future<String?> getInitialUrl() async {
     try {
       return _methodChannel.invokeMethod('initialUrl');
     } on PlatformException catch (e) {
@@ -32,7 +32,7 @@ class FacebookDeeplinks {
   }
 
   /// Stream of changes by URL.
-  Stream<String> get onDeeplinkReceived {
+  Stream<String>? get onDeeplinkReceived {
     if (_onDeeplinkReceived == null) {
       _onDeeplinkReceived =
           _eventChannel.receiveBroadcastStream().cast<String>();
