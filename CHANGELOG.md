@@ -1,5 +1,8 @@
 # Changelog
 
+## 0.4.0
+* updated FBSDK to 12.0.2
+
 ## 0.3.0
 * updated FBSDK to 9.1.0
 
