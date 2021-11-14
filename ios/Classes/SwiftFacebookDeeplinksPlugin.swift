@@ -35,7 +35,6 @@ public class SwiftFacebookDeeplinksPlugin: NSObject, FlutterPlugin, FlutterStrea
       didFinishLaunchingWithOptions: launchOptions
     )
 
-    ApplicationDelegate.initializeSDK(nil)
     AppLinkUtility.fetchDeferredAppLink { (url, error) in
       if let error = error {
         print("Received error while fetching deferred app link %@", error)
